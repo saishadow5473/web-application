@@ -20,7 +20,8 @@ stages:
       displayName: 'npm install and build'
       inputs:
         script: |
-          npm install -g @angular/cli
+          # npm install -g @angular/cli
+          npm install -g @angular/cli@12.2.17
           npm audit fix --force
           npm install
           ng build
