@@ -11,7 +11,7 @@ stages:
     steps:
     - task: NodeTool@0
       inputs:
-        versionSpec: '16.14.0'
+        versionSpec: '16.13.0'
       displayName: 'Install Node.js'
       
     - task: CmdLine@2
@@ -19,7 +19,7 @@ stages:
       inputs:
         script: |
           # npm install -g @angular/cli
-          npm install -g @angular/cli@16.0.0
+          npm install -g @angular/cli@12.2.18
           npm audit fix --force
           npm install
           ng build
