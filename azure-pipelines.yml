@@ -77,7 +77,7 @@ stages:
       inputs:
         sshEndpoint: 'newtest'
         runOptions: 'inline'
-        inline: 'sudo mv /home/azureuser/* /var/www/html/ && sudo systemctl restart apache2'
+        inline: 'sudo rm -r /var/www/html/assets/* && sudo mv /home/azureuser/* /var/www/html/ && sudo systemctl restart apache2'
 
     - script: |
         python -m pip install requests
