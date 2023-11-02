@@ -22,7 +22,7 @@ stages:
           npm install -g @angular/cli@12.2.18
           npm audit fix --force
           npm install
-          ng build
+          ng build --prod
           
     - task: ArchiveFiles@2
       inputs:
