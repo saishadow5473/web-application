@@ -22,7 +22,7 @@ stages:
           npm install -g @angular/cli@12.2.18
           npm audit fix --force
           npm install
-          ng build --prod
+          ng build
           
     - task: ArchiveFiles@2
       inputs:
@@ -77,4 +77,4 @@ stages:
       inputs:
         sshEndpoint: 'mytest'
         runOptions: 'inline'
-        inline: 'sudo mv /home/azureuser/* /var/www/html/ && sudo systemctl restart apache2'
+        inline: 'sudo rm -r /var/www/html/assets/* && sudo mv /home/azureuser/* /var/www/html/ && sudo systemctl restart apache2'
