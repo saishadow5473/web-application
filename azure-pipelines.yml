@@ -77,4 +77,4 @@ stages:
       inputs:
         sshEndpoint: 'newtest'
         runOptions: 'inline'
-        inline: 'sudo rm -r /var/www/html/assets/* && sudo mv /home/azureuser/* /var/www/html/ && sudo systemctl restart apache2'
+        inline: 'sudo mv /home/azureuser/* /var/www/html/ && sudo systemctl restart apache2'
