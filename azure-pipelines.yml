@@ -68,13 +68,13 @@ stages:
         
     - task: CopyFilesOverSSH@0
       inputs:
-        sshEndpoint: 'mytest'
+        sshEndpoint: 'newtest'
         sourceFolder: '$(System.ArtifactsDirectory)/extracted'
         contents: '**/*'
         targetFolder: '/home/azureuser/'
         
     - task: SSH@0
       inputs:
-        sshEndpoint: 'mytest'
+        sshEndpoint: 'newtest'
         runOptions: 'inline'
         inline: 'sudo mv /home/azureuser/* /var/www/html/ && sudo systemctl restart apache2'
