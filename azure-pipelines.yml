@@ -1,4 +1,5 @@
-trigger: none
+trigger:
+    - none
 
 pool:
   vmImage: 'ubuntu-latest'
@@ -17,6 +18,7 @@ stages:
       displayName: 'npm install and build'
       inputs:
         script: |
+          # npm install -g @angular/cli
           npm install -g @angular/cli@12.2.18
           npm audit fix --force
           npm install
@@ -66,13 +68,13 @@ stages:
         
     - task: CopyFilesOverSSH@0
       inputs:
-        sshEndpoint: 'bigtest'
+        sshEndpoint: 'newtest'
         sourceFolder: '$(System.ArtifactsDirectory)/extracted'
         contents: '**/*'
         targetFolder: '/home/azureuser/'
         
     - task: SSH@0
       inputs:
-        sshEndpoint: 'bigtest'
+        sshEndpoint: 'newtest'
         runOptions: 'inline'
-        inline: 'sudo rm -r /var/www/html/assets/* && sudo mv /home/azureuser/* /var/www/html/ && sudo systemctl restart apache2'
+        inline: 'sudo mv /home/azureuser/* /var/www/html/ && sudo systemctl restart apache2'
