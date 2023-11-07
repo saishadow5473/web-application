@@ -11,7 +11,7 @@ def main():
     driver = webdriver.Chrome(options=options)
     try:
         # Open the login page
-        driver.get("172.171.252.63")
+        driver.get("http://172.171.252.63/")
 
         # Fill in the username and password fields with valid values
         username_field = WebDriverWait(driver, 10).until(EC.visibility_of_element_located((By.NAME, "username")))
@@ -23,8 +23,10 @@ def main():
         username_field.send_keys(valid_username)
         password_field.send_keys(valid_password)
 
-        # Find and click the login button
-        login_button = driver.find_element(By.CSS_SELECTOR, 'input[type="Login"][value="Login"]')
+        # Find and click the login button (Correct the selector)
+        login_button = WebDriverWait(driver, 10).until(
+            EC.element_to_be_clickable((By.CSS_SELECTOR, 'input[type="submit"][value="Login"]')
+        )
         login_button.click()
 
         # Wait for the welcome message element to appear
