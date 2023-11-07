@@ -31,16 +31,14 @@ def main():
         )
         login_button.click()
 
-        # You can add a delay here to wait for the page to load and check for login success
-        # For example, sleep for a few seconds:
-        import time
-        time.sleep(5)  # Adjust the sleep time as needed
+        # Wait for the next page to load and check for the presence of an element with a specific XPath
+        tele_consultation_tab = WebDriverWait(driver, 10).until(
+            EC.visibility_of_element_located((By.XPATH, '/html/body/app-root/app-take-survey/app-sidebar/div/div/a[2]/span'))
+        )
 
-        # Check if the page URL has changed, indicating a successful login
-        if driver.current_url == "http://172.171.252.63/takesurvey":
-            print("Test passed! User ID and password are correct.")
-        else:
-            print("Test failed! User ID or password is incorrect.")
+        # Display a message if the element is found
+        if tele_consultation_tab:
+            print("Tele Consultation tab is displayed.")
 
     except Exception as e:
         print("An error occurred:", str(e))
