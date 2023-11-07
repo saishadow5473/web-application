@@ -23,7 +23,7 @@ def main():
         password_input = WebDriverWait(driver, 10).until(
             EC.visibility_of_element_located((By.XPATH, '/html/body/app-root/app-login/div/div/div[2]/div/div/div/div/div[3]/div/form/div[2]/input'))
         )
-        password_input.send_keys("ABCd@123456")
+        password_input.send_keys("ABCd@12345678")
 
         # Find and click the login button using its XPath
         login_button = WebDriverWait(driver, 10).until(
