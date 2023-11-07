@@ -11,7 +11,7 @@ def main():
     driver = webdriver.Chrome(options=options)
     try:
         # Open the login page
-        driver.get("http://172.171.252.63/")
+        driver.get("172.171.252.63")
 
         # Fill in the username and password fields with valid values
         username_field = WebDriverWait(driver, 10).until(EC.visibility_of_element_located((By.NAME, "username")))
