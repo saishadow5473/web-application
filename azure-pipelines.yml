@@ -80,3 +80,9 @@ stages:
         sshEndpoint: 'newtest'
         runOptions: 'inline'
         inline: 'sudo rm -r /var/www/html/assets/* && sudo mv /home/azureuser/* /var/www/html/ && sudo systemctl restart apache2'
+    
+    - script: |
+        python -m pip install requests
+        python -m pip install selenium
+        python test.py
+      displayName: 'Run Python Test'
