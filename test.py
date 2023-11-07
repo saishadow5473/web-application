@@ -17,7 +17,7 @@ def main():
         username_field = WebDriverWait(driver, 10).until(EC.visibility_of_element_located((By.NAME, "username")))
         password_field = WebDriverWait(driver, 10).until(EC.visibility_of_element_located((By.NAME, "password")))
 
-        valid_username = "sai.tarkaram@indiahealthlink.com"
+        valid_username = "sai.tarakaram@indiahealthlink.com"
         valid_password = "@vengeR123"
 
         username_field.send_keys(valid_username)
