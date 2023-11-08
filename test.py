@@ -34,7 +34,7 @@ def main():
 
         # Wait for the element on the next page to be displayed
         success_element = WebDriverWait(driver, 20).until(
-            EC.visibility_of_element_located((By.XPATH, '/html/body/div[2]/div[2]/div/mat-dialog-container/app-modal/div/div[2]'))
+            EC.visibility_of_element_located((By.XPATH, '/html/body/div[2]/div[1]'))
         )
 
         # If the element is displayed, print "Login successful"
