@@ -52,7 +52,7 @@ def main():
 
         # Check if the "Dashboard" tab is displayed without clicking
         dashboard_tab = WebDriverWait(driver, 10).until(
-            EC.visibility_of_element_located((By.XPATH, '/html/body/app-root/app-dashboard/app-sidebar/div/div/a[1]'))
+            EC.visibility_of_element_located((By.XPATH, '/html/body/app-root/app-dashboard/app-sidebar/div/div/a[1]/span'))
         )
 
         # If the Dashboard tab is found, print a message
