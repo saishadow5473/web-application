@@ -9,6 +9,7 @@ def main():
     options.add_argument('--headless')  # Use this if you're running headless
     options.binary_location = '/usr/bin/google-chrome'  # Actual path to Chrome binary
     driver = webdriver.Chrome(options=options)
+    
     try:
         # Open the login page
         driver.get("http://172.171.252.63/")
@@ -49,7 +50,7 @@ def main():
             print("Tele Consultation tab is displayed.")
 
     except Exception as e:
-        print("Login failed. Error: ", e)
+        print("Login failed. Error:", str(e))
 
     finally:
         # Close the browser
