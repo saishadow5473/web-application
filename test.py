@@ -2,7 +2,6 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-import time
 
 def main():
     # Set up the Selenium WebDriver with options
@@ -48,16 +47,6 @@ def main():
         # If the Tele Consultation tab is found, print a message
         if tele_consultation_tab:
             print("Tele Consultation tab is displayed.")
-            time.sleep(10)  # Wait for 10 seconds
-
-        # # Check if the "Dashboard" tab is displayed without clicking
-        # dashboard_tab = WebDriverWait(driver, 10).until(
-        #     EC.visibility_of_element_located((By.XPATH, '/html/body/app-root/app-dashboard/app-sidebar/div/div/a[1]/span'))
-        # )
-
-        # # If the Dashboard tab is found, print a message
-        # if dashboard_tab:
-        #     print("Dashboard tab is displayed.")
 
     except Exception as e:
         print("Login failed. Error: ", e)
