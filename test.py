@@ -48,6 +48,13 @@ def main():
         if tele_consultation_tab:
             print("Tele Consultation tab is displayed.")
 
+            # Click on the "Dashboard" tab
+            dashboard_tab = WebDriverWait(driver, 10).until(
+                EC.element_to_be_clickable((By.XPATH, '/html/body/app-root/app-dashboard/app-sidebar/div/div/a[1]'))
+            )
+            dashboard_tab.click()
+            print("Dashboard tab clicked.")
+
     except Exception as e:
         print("Login failed. Error: ", e)
 
