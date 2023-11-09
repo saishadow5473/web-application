@@ -49,6 +49,21 @@ def main():
         if welcome_text_tab:
             print("Welcome Text is displayed.")
 
+        # Click on the profile tab
+        profile_tab = WebDriverWait(driver, 20).until(
+            EC.element_to_be_clickable((By.XPATH, '/html/body/app-root/app-dashboard/app-headbar/div/div/div[2]/div/span[2]/span/span[1]'))
+        )
+        profile_tab.click()
+
+        # Verify the profile settings text
+        profile_settings_text = WebDriverWait(driver, 20).until(
+            EC.visibility_of_element_located((By.XPATH, '/html/body/app-root/app-dt/div/div/h2'))
+        )
+
+        # If the profile settings text is found, print the message
+        if profile_settings_text:
+            print("Clicked on profile, and profile setting text is verified.")
+
     except Exception as e:
         print("Login failed. Error:", str(e))
 
