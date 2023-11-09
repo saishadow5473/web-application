@@ -40,14 +40,14 @@ def main():
         # If the element is displayed, print "Login successful"
         print("Login successful")
 
-        # Wait for the Tele Consultation tab to be displayed
-        tele_consultation_tab = WebDriverWait(driver, 20).until(
+        # Wait for the Welcome Text to be displayed
+        welcome_text_tab = WebDriverWait(driver, 20).until(
             EC.visibility_of_element_located((By.XPATH, '/html/body/app-root/app-dashboard/app-headbar/div/div/div[2]/div/span[1]'))
         )
 
-        # If the Tele Consultation tab is found, print a message
-        if tele_consultation_tab:
-            print("Tele Consultation tab is displayed.")
+        # If the Welcome Text is found, print a message
+        if welcome_text_tab:
+            print("Welcome Text is displayed.")
 
     except Exception as e:
         print("Login failed. Error:", str(e))
