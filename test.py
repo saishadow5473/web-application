@@ -81,7 +81,7 @@ def main():
 
         # Click on the tele consultation tab
         tele_consultation_tab = WebDriverWait(driver, 20).until(
-            EC.element_to_be_clickable((By.XPATH, '/html/body/app-root/app-teleconsultdashboard/app-sidebar/div/div/a[2]'))
+            EC.element_to_be_clickable((By.XPATH, '/html/body/app-root/app-dashboard/app-sidebar/div/div/a[2]/span/div'))
         )
         tele_consultation_tab.click()
 
