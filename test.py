@@ -42,7 +42,7 @@ def main():
 
         # Wait for the Tele Consultation tab to be displayed
         tele_consultation_tab = WebDriverWait(driver, 20).until(
-            EC.visibility_of_element_located((By.XPATH, '/html/body/app-root/app-dashboard/app-headbar/div/div/div[2]/div/span[1]/text()'))
+            EC.visibility_of_element_located((By.XPATH, '/html/body/app-root/app-dashboard/app-headbar/div/div/div[2]/div/span[1]'))
         )
 
         # If the Tele Consultation tab is found, print a message
