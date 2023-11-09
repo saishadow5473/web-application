@@ -66,7 +66,7 @@ def main():
 
         # Click on the dashboard icon button
         dashboard_button = WebDriverWait(driver, 20).until(
-            EC.element_to_be_clickable((By.XPATH, '/html/body/app-root/app-dt/app-sidebar/div/div/a[1]/span'))
+            EC.element_to_be_clickable((By.XPATH, '/html/body/app-root/app-teleconsultdashboard/app-sidebar/div/div/a[2]'))
         )
         dashboard_button.click()
 
