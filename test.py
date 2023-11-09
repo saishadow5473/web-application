@@ -40,7 +40,7 @@ def main():
         # If the element is displayed, print "Login successful"
         print("Login successful")
 
-        Wait for the Tele Consultation tab to be displayed
+        # Wait for the Tele Consultation tab to be displayed
         tele_consultation_tab = WebDriverWait(driver, 20).until(
             EC.visibility_of_element_located((By.XPATH, '/html/body/app-root/app-take-survey/app-sidebar/div/div/a[2]/span'))
         )
