@@ -9,7 +9,7 @@ def main():
     options.add_argument('--headless')  # Use this if you're running headless
     options.binary_location = '/usr/bin/google-chrome'  # Actual path to Chrome binary
     driver = webdriver.Chrome(options=options)
-    
+
     try:
         # Open the login page
         driver.get("http://172.171.252.63/")
@@ -78,6 +78,21 @@ def main():
         # If the stats text is found, print the message
         if stats_text:
             print("Clicked on dashboard, and stats text is verified.")
+
+        # Click on the tele consultation tab
+        tele_consultation_tab = WebDriverWait(driver, 20).until(
+            EC.element_to_be_clickable((By.XPATH, '/html/body/app-root/app-teleconsultdashboard/app-sidebar/div/div/a[2]/span'))
+        )
+        tele_consultation_tab.click()
+
+        # Verify the tele consultation text
+        tele_consultation_text = WebDriverWait(driver, 20).until(
+            EC.visibility_of_element_located((By.XPATH, '/html/body/app-root/app-teleconsultdashboard/div/div[1]/h3'))
+        )
+
+        # If the tele consultation text is found, print the message
+        if tele_consultation_text:
+            print("Clicked on tele consultation tab and tele consultation text is verified.")
 
     except Exception as e:
         print("Login failed. Error:", str(e))
