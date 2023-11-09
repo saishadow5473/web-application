@@ -64,6 +64,21 @@ def main():
         if profile_settings_text:
             print("Clicked on profile, and profile setting text is verified.")
 
+        # Click on the dashboard icon button
+        dashboard_button = WebDriverWait(driver, 20).until(
+            EC.element_to_be_clickable((By.XPATH, '/html/body/app-root/app-dashboard/app-sidebar/div/div/a[1]'))
+        )
+        dashboard_button.click()
+
+        # Verify the stats text
+        stats_text = WebDriverWait(driver, 20).until(
+            EC.visibility_of_element_located((By.XPATH, '/html/body/app-root/app-dashboard/div[2]/div/div[1]/h2'))
+        )
+
+        # If the stats text is found, print the message
+        if stats_text:
+            print("Clicked on dashboard, and stats text is verified.")
+
     except Exception as e:
         print("Login failed. Error:", str(e))
 
