@@ -1,64 +1,105 @@
-package com.framework.selenium.api.base;
+from selenium import webdriver
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 
-import java.io.File;
-import java.time.Duration;
+def main():
+    # Set up the Selenium WebDriver with options
+    options = webdriver.ChromeOptions()
+    options.add_argument('--headless')  # Use this if you're running headless
+    options.binary_location = '/usr/bin/google-chrome'  # Actual path to Chrome binary
+    driver = webdriver.Chrome(options=options)
 
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
-import org.openqa.selenium.edge.EdgeDriver;
-import org.openqa.selenium.edge.EdgeOptions;
-import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.firefox.FirefoxOptions;
-import org.openqa.selenium.ie.InternetExplorerDriver;
-import org.openqa.selenium.remote.RemoteWebDriver;
-import org.openqa.selenium.support.ui.WebDriverWait;
+    try:
+        # Open the login page
+        driver.get("http://172.171.252.63/")
 
-public class DriverInstance  {
+        # Find and interact with the user ID input field using its XPath
+        user_id_input = WebDriverWait(driver, 20).until(
+            EC.visibility_of_element_located((By.XPATH, '/html/body/app-root/app-login/div/div/div[2]/div/div/div/div/div[3]/div/form/div[1]/input'))
+        )
+        user_id_input.send_keys("pavan.veeramaneni@indiahealthlink.com")
 
-	private static final ThreadLocal<RemoteWebDriver> remoteWebdriver = new ThreadLocal<RemoteWebDriver>();
-	private static final ThreadLocal<WebDriverWait> wait = new  ThreadLocal<WebDriverWait>();
+        # Find and interact with the password input field using its XPath
+        password_input = WebDriverWait(driver, 20).until(
+            EC.visibility_of_element_located((By.XPATH, '/html/body/app-root/app-login/div/div/div[2]/div/div/div/div/div[3]/div/form/div[2]/input'))
+        )
+        password_input.send_keys("ABCd@123456")
 
-	public void setWait() {
-		wait.set(new WebDriverWait(getDriver(),Duration.ofSeconds(30)));
-	}
+        # Find and click the login button using its XPath
+        login_button = WebDriverWait(driver, 20).until(
+            EC.element_to_be_clickable((By.XPATH, '/html/body/app-root/app-login/div/div/div[2]/div/div/div/div/div[3]/div/form/div[3]/button'))
+        )
+        login_button.click()
 
-	public WebDriverWait getWait() {
-		return wait.get();
-	}
+        # Wait for the element on the next page to be displayed
+        success_element = WebDriverWait(driver, 20).until(
+            EC.visibility_of_element_located((By.XPATH, '/html/body/app-root/app-dashboard/div[2]/div/div[1]/h2'))
+        )
 
-	public void setDriver(String browser, boolean headless) {		
-		switch (browser) {
-		case "chrome":
-			ChromeOptions options = new ChromeOptions();
-			options.addArguments("--start-maximized"); 
-			options.addArguments("--disable-notifications"); 
-			options.addArguments("--incognito");
-			options.addArguments("--remote-allow-origins=*");
-			remoteWebdriver.set(new ChromeDriver(options));
-			break;
-		case "firefox":
-		     FirefoxOptions option = new FirefoxOptions();
-		     option.addArguments("--start-maximized");
-		     option.addArguments("--disable-notifications");
-		     option.addArguments("--incognito");
-		     option.addArguments("--remote-allow-origins=*");
-		     remoteWebdriver.set(new FirefoxDriver(option));
-			break;
-		case "edge":
-		     EdgeOptions option1 = new EdgeOptions();
-		     option1.addArguments("--start-maximized");
-		     option1.addArguments("--disable-notifications");
-		     //option1.addArguments("--incognito");
-		     remoteWebdriver.set(new EdgeDriver(option1));
-			break;
-		case "ie":
-			remoteWebdriver.set(new InternetExplorerDriver());
-		default:
-			break;
-		}
-	}
-	public RemoteWebDriver getDriver() {
-		return remoteWebdriver.get();
-	}
-	
-}
+        # If the element is displayed, print "Login successful"
+        print("Login successful")
+
+        # Wait for the Welcome Text to be displayed
+        welcome_text_tab = WebDriverWait(driver, 20).until(
+            EC.visibility_of_element_located((By.XPATH, '/html/body/app-root/app-dashboard/app-headbar/div/div/div[2]/div/span[1]'))
+        )
+
+        # If the Welcome Text is found, print a message
+        if welcome_text_tab:
+            print("Welcome Text is displayed.")
+
+        # Click on the profile tab
+        profile_tab = WebDriverWait(driver, 20).until(
+            EC.element_to_be_clickable((By.XPATH, '/html/body/app-root/app-dashboard/app-headbar/div/div/div[2]/div/span[2]/span/span[1]'))
+        )
+        profile_tab.click()
+
+        # Verify the profile settings text
+        profile_settings_text = WebDriverWait(driver, 20).until(
+            EC.visibility_of_element_located((By.XPATH, '/html/body/app-root/app-dt/div/div/h2'))
+        )
+
+        # If the profile settings text is found, print the message
+        if profile_settings_text:
+            print("Clicked on profile, and profile setting text is verified.")
+
+        # Click on the dashboard icon button
+        dashboard_button = WebDriverWait(driver, 20).until(
+            EC.element_to_be_clickable((By.XPATH, '/html/body/app-root/app-dt/app-sidebar/div/div/a[1]/span'))
+        )
+        dashboard_button.click()
+
+        # Verify the stats text
+        stats_text = WebDriverWait(driver, 20).until(
+            EC.visibility_of_element_located((By.XPATH, '/html/body/app-root/app-dashboard/div[2]/div/div[1]/h2'))
+        )
+
+        # If the stats text is found, print the message
+        if stats_text:
+            print("Clicked on dashboard, and stats text is verified.")
+
+        # Click on the tele consultation tab
+        tele_consultation_tab = WebDriverWait(driver, 20).until(
+            EC.element_to_be_clickable((By.XPATH, '/html/body/app-root/app-dashboard/app-sidebar/div/div/a[2]/span/div'))
+        )
+        tele_consultation_tab.click()
+
+        # Verify the tele consultation text
+        tele_consultation_text = WebDriverWait(driver, 20).until(
+            EC.visibility_of_element_located((By.XPATH, '/html/body/app-root/app-teleconsultdashboard/div/div[1]/h3'))
+        )
+
+        # If the tele consultation text is found, print the message
+        if tele_consultation_text:
+            print("Clicked on tele consultation tab and tele consultation text is verified.")
+
+    except Exception as e:
+        print("Login failed. Error:", str(e))
+
+    finally:
+        # Close the browser
+        driver.quit()
+
+if __name__ == "__main__":
+    main()
