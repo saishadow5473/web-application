@@ -108,6 +108,12 @@ def main():
         if tele_consultation_text:
             print("Clicked on tele consultation tab and tele consultation text is verified.")
 
+        # Click on the dashboard icon button again
+        dashboard_button_after_tele_consultation = WebDriverWait(driver, 20).until(
+            EC.element_to_be_clickable((By.XPATH, DASHBOARD_BUTTON_XPATH))
+        )
+        dashboard_button_after_tele_consultation.click()
+
     except Exception as e:
         print("Login failed. Error:", str(e))
 
