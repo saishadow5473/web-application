@@ -114,6 +114,14 @@ def main():
         )
         dashboard_button_after_tele_consultation.click()
 
+        # Print a message after clicking on the dashboard button again
+        dashboard_text_after_click = WebDriverWait(driver, 20).until(
+            EC.visibility_of_element_located((By.XPATH, STATS_TEXT_XPATH))
+        )
+
+        if dashboard_text_after_click:
+            print("Clicked on dashboard button again and dashboard text is verified.")
+
     except Exception as e:
         print("Login failed. Error:", str(e))
 
