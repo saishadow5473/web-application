@@ -5,10 +5,10 @@ from selenium.webdriver.support import expected_conditions as EC
 
 # Define XPaths as variables
 LOGIN_PAGE = "http://172.171.252.63/"
-USER_ID_INPUT_XPATH = '/html/body/app-root/app-login/div/div/div[2]/div/div/div/div/div[3]/div/form/div[1]/input'
-PASSWORD_INPUT_XPATH = '/html/body/app-root/app-login/div/div/div[2]/div/div/div/div/div[3]/div/form/div[2]/input'
-LOGIN_BUTTON_XPATH = '/html/body/app-root/app-login/div/div/div[2]/div/div/div/div/div[3]/div/form/div[3]/button'
-SUCCESS_ELEMENT_XPATH = '/html/body/app-root/app-dashboard/div[2]/div/div[1]/h2'
+USER_ID_INPUT_XPATH = '//*[@id="username"]'
+PASSWORD_INPUT_XPATH = '//*[@id="password"]'
+LOGIN_BUTTON_XPATH = '//*[@id="kc-login"]'
+SUCCESS_ELEMENT_XPATH = '//*[@id="kc-header-wrapper"]/div[2]/div/div/h2'
 WELCOME_TEXT_XPATH = '/html/body/app-root/app-dashboard/app-headbar/div/div/div[2]/div/span[1]'
 PROFILE_TAB_XPATH = '/html/body/app-root/app-dashboard/app-headbar/div/div/div[2]/div/span[2]/span/span[1]'
 PROFILE_SETTINGS_TEXT_XPATH = '/html/body/app-root/app-dt/div/div/h2'
@@ -109,19 +109,16 @@ def main():
             print("Clicked on tele consultation tab and tele consultation text is verified.")
 
         # Click on the dashboard icon button again
-        dashboard_button_after_tele_consultation = WebDriverWait(driver, 20).until(
-            EC.element_to_be_clickable((By.XPATH, DASHBOARD_BUTTON_XPATH))
-        )
-        dashboard_button_after_tele_consultation.click()
+        dashboard_button.click()
 
-        # Print a message after clicking on the dashboard button again
-        dashboard_text_after_click = WebDriverWait(driver, 20).until(
+        # Verify the stats text again using a different variable
+        stats_text_again = WebDriverWait(driver, 20).until(
             EC.visibility_of_element_located((By.XPATH, STATS_TEXT_XPATH))
         )
 
-        if dashboard_text_after_click:
-            print("Clicked on dashboard button again and dashboard text is verified.")
-
+        # If the stats text is found, print the message
+        if stats_text_again:
+            print("Clicked on dashboard again, and stats text is verified.")
     except Exception as e:
         print("Login failed. Error:", str(e))
 
