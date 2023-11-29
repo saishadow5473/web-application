@@ -109,6 +109,9 @@ def main():
             print("Clicked on tele consultation tab and tele consultation text is verified.")
 
         # Click on the dashboard icon button again
+        dashboard_button = WebDriverWait(driver, 20).until(
+            EC.element_to_be_clickable((By.XPATH, DASHBOARD_BUTTON_XPATH))
+        )
         dashboard_button.click()
 
         # Verify the stats text again using a different variable
