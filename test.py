@@ -71,12 +71,11 @@ def main():
         find_element(driver, tele_consultation_text_xpath)
         print("Clicked on tele consultation tab and tele consultation text is verified.")
 
-        # Click on the dashboard icon button
-        click_element(driver, dashboard_button_xpath)
+        # Verify profile settings text
+        find_element(driver, profile_settings_xpath)
+        print("Clicked on profile, and profile setting text is verified.")
 
-        # Verify the stats text
-        find_element(driver, stats_text_xpath)
-        print("Clicked on dashboard again, and stats text is verified.")
+        
 
         
         
