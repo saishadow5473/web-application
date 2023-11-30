@@ -71,14 +71,14 @@ def main():
         find_element(driver, tele_consultation_text_xpath)
         print("Clicked on tele consultation tab and tele consultation text is verified.")
 
-        # Click on the profile tab
-        click_element(driver, profile_tab_xpath)
+        WebDriverWait(driver, 20).until(EC.element_to_be_clickable((By.XPATH, dashboard_button_xpath)))
 
-        # Verify profile settings text
-        find_element(driver, profile_settings_xpath)
-        print("Clicked on profile, and profile setting text is verified.")
+        # Click on the dashboard button again
+        click_element(driver, dashboard_button_xpath)
 
-
+        # Verify the stats text after the second dashboard click
+        find_element(driver, stats_text_xpath)
+        print("Clicked on dashboard again, and stats text is verified.") 
 
         
 
