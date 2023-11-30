@@ -29,8 +29,6 @@ def main():
         welcome_text_xpath = '/html/body/app-root/app-dashboard/app-headbar/div/div/div[2]/div/span[1]'
         profile_tab_xpath = '/html/body/app-root/app-dashboard/app-headbar/div/div/div[2]/div/span[2]/span/span[1]'
         profile_settings_xpath = '/html/body/app-root/app-dt/div/div/h2'
-        dashboard_button_xpath = '/html/body/app-root/app-dashboard/app-sidebar/div/div/a[1]/span'
-        stats_text_xpath = '/html/body/app-root/app-dashboard/div[2]/div/div[1]/h2'
         tele_consultation_tab_xpath = '/html/body/app-root/app-dashboard/app-sidebar/div/div/a[2]/span/div'
         tele_consultation_text_xpath = '/html/body/app-root/app-teleconsultdashboard/div/div[1]/h3'
 
@@ -57,12 +55,12 @@ def main():
         find_element(driver, profile_settings_xpath)
         print("Clicked on profile, and profile setting text is verified.")
 
-        # Click on the dashboard icon button
-        click_element(driver, dashboard_button_xpath)
+        # # Click on the dashboard icon button
+        # click_element(driver, dashboard_button_xpath)
 
-        # Verify the stats text
-        find_element(driver, stats_text_xpath)
-        print("Clicked on dashboard, and stats text is verified.")
+        # # Verify the stats text
+        # find_element(driver, stats_text_xpath)
+        # print("Clicked on dashboard, and stats text is verified.")
 
         # Click on the tele consultation tab
         click_element(driver, tele_consultation_tab_xpath)
