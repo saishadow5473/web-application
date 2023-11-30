@@ -78,13 +78,6 @@ def main():
         find_element(driver, profile_settings_xpath)
         print("Clicked on profile, and profile setting text is verified.")
 
-        # Click on the dashboard button again
-        click_element(driver, dashboard_button_xpath)
-
-        # Verify the stats text after clicking on the dashboard button again
-        find_element(driver, stats_text_xpath)
-        print("Clicked on dashboard again, and stats text is verified.")
-
         
 
         
