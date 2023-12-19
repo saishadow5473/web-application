@@ -71,7 +71,7 @@ def main():
         find_element(driver, tele_consultation_text_xpath)
         print("Clicked on tele consultation tab and tele consultation text is verified.")
 
-except Exception as e:
+    except Exception as e:
         print("Login failed. Error:", str(e))
 
     finally:
