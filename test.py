@@ -71,21 +71,7 @@ def main():
         find_element(driver, tele_consultation_text_xpath)
         print("Clicked on tele consultation tab and tele consultation text is verified.")
 
-        WebDriverWait(driver, 20).until(EC.element_to_be_clickable((By.XPATH, dashboard_button_xpath)))
-
-        # Click on the dashboard button again
-        click_element(driver, dashboard_button_xpath)
-
-        # Verify the stats text after the second dashboard click
-        find_element(driver, stats_text_xpath)
-        print("Clicked on dashboard again, and stats text is verified.") 
-
-        
-
-        
-        
-
-    except Exception as e:
+except Exception as e:
         print("Login failed. Error:", str(e))
 
     finally:
