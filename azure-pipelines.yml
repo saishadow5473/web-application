@@ -79,7 +79,7 @@ stages:
       inputs:
         sshEndpoint: 'newtest'
         runOptions: 'inline'
-        inline: 'sudo rm -r /var/www/html/assets/* && sudo mv /home/ubuntu/* /var/www/html/ && sudo systemctl restart apache2'
+        inline: 'sudo mv /home/ubuntu/* /var/www/html/ && sudo systemctl restart apache2'
     
     - script: |
         python -m pip install requests
