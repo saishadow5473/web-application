@@ -37,6 +37,8 @@ def main():
         select_your_association_xpath = '/html/body/app-root/app-affiliated-users/div/div[1]/div/h3'
         dev_testing_xpath = '/html/body/app-root/app-affiliated-users/div/div[2]/div/div[2]/div/span'
         dev_testing_text_xpath = '/html/body/app-root/app-affiliated-users/div/div[1]/div[1]/h3'
+        financial_wellbeing_xpath = '/html/body/app-root/app-affiliated-users/div/div[2]/div/div[3]/div/span'
+        accept_button_xpath = '/html/body/div[3]/div[2]/div/mat-dialog-container/app-modal/div/div[2]/div[2]/button[2]'
 
         # Interact with the user ID input field
         user_id_input = find_element(driver, user_id_xpath)
@@ -90,6 +92,14 @@ def main():
         # Verify the Dev Testing text
         find_element(driver, dev_testing_text_xpath)
         print("Clicked on Dev Testing tab and Dev Testing text is verified.")
+
+        # Click on the Financial Wellbeing tab
+        click_element(driver, financial_wellbeing_xpath)
+        print("Clicked on Financial Wellbeing tab")
+
+        # Click on the Accept button
+        click_element(driver, accept_button_xpath)
+        print("Clicked on Accept button")
 
 
     except Exception as e:
