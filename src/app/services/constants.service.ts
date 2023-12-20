@@ -34,7 +34,7 @@ export class ConstantsService {
   public externalBaseURL = "https://dashboard.indiahealthlink.com/";
   //public ihlBaseurl = "https://scanningapi.indiahealthlink.com/";
   // public ihlBaseurl = "https://devserver.indiahealthlink.com/";                             // this is for developement server url
-  public ihlBaseurl = "https://devserver.indiahealthlink.com/";                           // this is for live server url
+  public ihlBaseurl = "https://azureapi.indiahealthlink.com/";                           // this is for live server url
   public ihlCrossbarWS = "wss://testing.indiahealthlink.com:9080/ws";
   //public ihlCrossbarWS = "wss://scanning.indiahealthlink.com:9080/ws";
   public ihlCrossbarRealm = "crossbardemo";
