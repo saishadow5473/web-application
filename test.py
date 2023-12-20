@@ -2,6 +2,7 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+import time
 
 def find_element(driver, xpath):
     return WebDriverWait(driver, 20).until(EC.visibility_of_element_located((By.XPATH, xpath)))
@@ -39,6 +40,7 @@ def main():
         dev_testing_text_xpath = '/html/body/app-root/app-affiliated-users/div/div[1]/div[1]/h3'
         financial_wellbeing_xpath = '/html/body/app-root/app-affiliated-users/div/div[2]/div/div[3]/div/span'
         accept_button_xpath = '/html/body/div[3]/div[2]/div/mat-dialog-container/app-modal/div/div[2]/div[2]/button[2]'
+        consultants_list_xpath = '/html/body/app-root/app-affiliated-category-users/div/div[1]/div[2]/h5'
 
         # Interact with the user ID input field
         user_id_input = find_element(driver, user_id_xpath)
@@ -100,6 +102,11 @@ def main():
         # Click on the Accept button
         click_element(driver, accept_button_xpath)
         print("Clicked on Accept button")
+        time.sleep(20)
+
+        # Verify the Consultants list text
+        find_element(driver, consultants_list_xpath)
+        print("consultants list text is verified.")
 
 
     except Exception as e:
