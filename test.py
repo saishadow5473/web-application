@@ -46,59 +46,74 @@ def main():
         # Interact with the user ID input field
         user_id_input = find_element(driver, user_id_xpath)
         user_id_input.send_keys("deepak.mathi@indiahealthlink.com")
+        time.sleep(10)
 
         # Interact with the password input field
         password_input = find_element(driver, password_xpath)
         password_input.send_keys("Test@123")
+        time.sleep(10)
 
         # Click the login button
         click_element(driver, login_button_xpath)
         print("Login successful")
+        time.sleep(10)
 
         # Verify Welcome Text
         find_element(driver, welcome_text_xpath)
         print("Welcome Text is displayed.")
+        time.sleep(10)
 
         # Click on the profile tab
         click_element(driver, profile_tab_xpath)
+        time.sleep(10)
 
         # Verify profile settings text
         find_element(driver, profile_settings_xpath)
         print("Clicked on profile, and profile setting text is verified.")
+        time.sleep(10)
 
         # Click on the dashboard icon button
         click_element(driver, dashboard_button_xpath)
+        time.sleep(10)
 
         # Verify the stats text
         find_element(driver, stats_text_xpath)
         print("Clicked on dashboard, and stats text is verified.")
+        time.sleep(10)
 
         # Click on the tele consultation tab
         click_element(driver, tele_consultation_tab_xpath)
+        time.sleep(10)
 
         # Verify the tele consultation text
         find_element(driver, tele_consultation_text_xpath)
         print("Clicked on tele consultation tab and tele consultation text is verified.")
+        time.sleep(10)
 
         # Click on the member services tab
         click_element(driver, member_services_xpath)
         print("Clicked on member services tab")
+        time.sleep(10)
 
         # Verify the select your association text
         find_element(driver, select_your_association_xpath)
         print("Clicked on member services and select your association text is verified.")
+        time.sleep(10)
 
         # Click on the Dev Testing tab
         click_element(driver, dev_testing_xpath)
         print("Clicked on Dev Testing tab")
+        time.sleep(10)
 
         # Verify the Dev Testing text
         find_element(driver, dev_testing_text_xpath)
         print("Clicked on Dev Testing tab and Dev Testing text is verified.")
+        time.sleep(10)
 
         # Click on the Financial Wellbeing tab
         click_element(driver, financial_wellbeing_xpath)
         print("Clicked on Financial Wellbeing tab")
+        time.sleep(10)
 
         # Click on the Accept button
         click_element(driver, accept_button_xpath)
