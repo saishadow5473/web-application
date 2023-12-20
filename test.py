@@ -36,11 +36,11 @@ def main():
 
         # Interact with the user ID input field
         user_id_input = find_element(driver, user_id_xpath)
-        user_id_input.send_keys("pavan.veeramaneni@indiahealthlink.com")
+        user_id_input.send_keys("deepak.mathi@indiahealthlink.com")
 
         # Interact with the password input field
         password_input = find_element(driver, password_xpath)
-        password_input.send_keys("ABCd@123456")
+        password_input.send_keys("Test@123")
 
         # Click the login button
         click_element(driver, login_button_xpath)
