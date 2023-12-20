@@ -15,8 +15,11 @@ def click_element(driver, xpath):
 def main():
     # Set up the Selenium WebDriver with options
     options = webdriver.ChromeOptions()
+    # Comment the next line if you want to see the browser window
     options.add_argument('--headless')  # Use this if you're running headless
-    options.binary_location = '/usr/bin/google-chrome'  # Actual path to Chrome binary
+    # Actual path to Chrome binary (change this to the path on your machine)
+    options.binary_location = '/usr/bin/google-chrome'
+    # options.binary_location = 'C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe'
     driver = webdriver.Chrome(options=options)
 
     try:
@@ -44,6 +47,8 @@ def main():
         call_button_xpath = '/html/body/app-root/app-affiliated-category-users/div/div[1]/div[2]/div/div[6]/div/div/div[3]/span[1]'
         visit_xpath = '/html/body/app-root/app-teleconsult-confirm-visit/div[1]/div[2]/div[3]/div[1]/div/mat-form-field/div/div[1]/div/input'
         confirm_button_xpath = '/html/body/app-root/app-teleconsult-confirm-visit/div[1]/div[2]/div[3]/div[2]/div/div[2]/button'
+        user_name_xpath = '/html/body/app-root/app-login/div/div/mat-card/mat-card-content/form/mat-form-field[1]/div/div[1]/div[3]/input'
+        pwd_xpath = '/html/body/app-root/app-login/div/div/mat-card/mat-card-content/form/mat-form-field[2]/div/div[1]/div[3]/input'
 
         # Interact with the user ID input field
         user_id_input = find_element(driver, user_id_xpath)
@@ -141,6 +146,37 @@ def main():
         click_element(driver, confirm_button_xpath )
         print("Clicked on confirm button")
         time.sleep(10)
+
+        # Open a new tab
+        driver.execute_script("window.open('about:blank', '_blank');")
+
+        # Switch to the newly opened tab
+        driver.switch_to.window(driver.window_handles[1])
+
+        # Navigate to the desired URL
+        new_tab_url = "https://apps.indiahealthlink.com/consultant/"
+        driver.get(new_tab_url)
+
+        # Add a delay if needed to ensure the page is fully loaded
+        time.sleep(10)
+
+
+
+        # Switch back to the original tab
+        driver.switch_to.window(driver.window_handles[0])
+
+        # Interact with the user ID input field
+        user_name_input = find_element(driver, user_name_xpath)
+        user_name_input.send_keys("Janhavidr")
+        time.sleep(10)
+
+        # Interact with the password input field
+        password_input = find_element(driver, pwd_xpath)
+        password_input.send_keys("Test@123")
+        time.sleep(10)
+
+
+
 
 
 
