@@ -33,6 +33,8 @@ def main():
         profile_settings_xpath = '/html/body/app-root/app-dt/div/div/h2'
         tele_consultation_tab_xpath = '/html/body/app-root/app-dashboard/app-sidebar/div/div/a[3]/span/div'
         tele_consultation_text_xpath = '/html/body/app-root/app-teleconsultdashboard/div/div[1]/h3'
+        member_services_xpath = '/html/body/app-root/app-teleconsultdashboard/app-sidebar/div/div/a[2]/span/div'
+        select_your_association_xpath = '/html/body/app-root/app-affiliated-users/div/div[1]/div/h3'
 
         # Interact with the user ID input field
         user_id_input = find_element(driver, user_id_xpath)
@@ -70,6 +72,14 @@ def main():
         # Verify the tele consultation text
         find_element(driver, tele_consultation_text_xpath)
         print("Clicked on tele consultation tab and tele consultation text is verified.")
+
+        # Click on the member services tab tab
+        click_element(driver, member_services_xpath)
+        print("Clicked on member services tab")
+
+        # Verify the select your association text
+        find_element(driver, select_your_association_xpath)
+        print("Clicked on member services and select your association text is verified.")
 
     except Exception as e:
         print("Login failed. Error:", str(e))
