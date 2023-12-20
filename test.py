@@ -49,6 +49,8 @@ def main():
         confirm_button_xpath = '/html/body/app-root/app-teleconsult-confirm-visit/div[1]/div[2]/div[3]/div[2]/div/div[2]/button'
         user_name_xpath = '/html/body/app-root/app-login/div/div/mat-card/mat-card-content/form/mat-form-field[1]/div/div[1]/div[3]/input'
         pwd_xpath = '/html/body/app-root/app-login/div/div/mat-card/mat-card-content/form/mat-form-field[2]/div/div[1]/div[3]/input'
+        submit_button_xpath = '/html/body/app-root/app-login/div/div/mat-card/mat-card-content/form/mat-card-actions/div/button'
+        
 
         # Interact with the user ID input field
         user_id_input = find_element(driver, user_id_xpath)
@@ -162,8 +164,8 @@ def main():
 
 
 
-        # Switch back to the original tab
-        driver.switch_to.window(driver.window_handles[0])
+        # # Switch back to the original tab
+        # driver.switch_to.window(driver.window_handles[0])
 
         # Interact with the user ID input field
         user_name_input = find_element(driver, user_name_xpath)
@@ -173,6 +175,11 @@ def main():
         # Interact with the password input field
         password_input = find_element(driver, pwd_xpath)
         password_input.send_keys("Test@123")
+        time.sleep(10)
+
+        # Click the submit button
+        click_element(driver, submit_button_xpath)
+        print("submit successful")
         time.sleep(10)
 
 
