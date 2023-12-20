@@ -31,7 +31,7 @@ def main():
         welcome_text_xpath = '/html/body/app-root/app-dashboard/app-headbar/div/div/div[2]/div/span[1]'
         profile_tab_xpath = '/html/body/app-root/app-dashboard/app-headbar/div/div/div[2]/div/span[2]/span/span[1]'
         profile_settings_xpath = '/html/body/app-root/app-dt/div/div/h2'
-        tele_consultation_tab_xpath = '/html/body/app-root/app-dashboard/app-sidebar/div/div/a[2]/span/div'
+        tele_consultation_tab_xpath = '/html/body/app-root/app-dashboard/app-sidebar/div/div/a[3]/span/div'
         tele_consultation_text_xpath = '/html/body/app-root/app-teleconsultdashboard/div/div[1]/h3'
 
         # Interact with the user ID input field
