@@ -42,6 +42,7 @@ def main():
         accept_button_xpath = '/html/body/div[3]/div[2]/div/mat-dialog-container/app-modal/div/div[2]/div[2]/button[2]'
         consultants_list_xpath = '/html/body/app-root/app-affiliated-category-users/div/div[1]/div[2]/h5'
         call_button_xpath = '/html/body/app-root/app-affiliated-category-users/div/div[1]/div[2]/div/div[6]/div/div/div[3]/span[1]'
+        visit_xpath = '/html/body/app-root/app-teleconsult-confirm-visit/div[1]/div[2]/div[3]/div[1]/div/mat-form-field/div/div[1]/div/input'
 
         # Interact with the user ID input field
         user_id_input = find_element(driver, user_id_xpath)
@@ -129,6 +130,11 @@ def main():
         click_element(driver, call_button_xpath )
         print("Clicked on call button")
         time.sleep(20)
+
+        # Interact with the user ID input field
+        visit_xpath_input = find_element(driver, visit_xpath)
+        visit_xpath_input.send_keys("sample")
+        time.sleep(10)
 
 
     except Exception as e:
