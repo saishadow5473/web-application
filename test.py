@@ -50,6 +50,7 @@ def main():
         user_name_xpath = '/html/body/app-root/app-login/div/div/mat-card/mat-card-content/form/mat-form-field[1]/div/div[1]/div[3]/input'
         pwd_xpath = '/html/body/app-root/app-login/div/div/mat-card/mat-card-content/form/mat-form-field[2]/div/div[1]/div[3]/input'
         submit_button_xpath = '/html/body/app-root/app-login/div/div/mat-card/mat-card-content/form/mat-card-actions/div/button'
+        appointment_details_xpath = '/html/body/app-root/app-host-appointment-list/div/div/div/mat-card/mat-card-title'
         
 
         # Interact with the user ID input field
@@ -181,6 +182,11 @@ def main():
         click_element(driver, submit_button_xpath)
         print("submit successful")
         time.sleep(10)
+
+        # Verify the Appointment Details text
+        find_element(driver, appointment_details_xpath)
+        print("Appointment Details text is verified.")
+        time.sleep(20)
 
 
 
