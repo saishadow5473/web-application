@@ -153,7 +153,7 @@ def main():
         # Click on the Confirm button
         click_element(driver, confirm_button_xpath )
         print("Clicked on confirm button")
-        time.sleep(5)
+        time.sleep(15)
 
         # Open a new tab
         driver.execute_script("window.open('about:blank', '_blank');")
