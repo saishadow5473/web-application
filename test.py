@@ -139,7 +139,7 @@ def main():
         # Click on the Call button
         click_element(driver, call_button_xpath )
         print("Clicked on call button")
-        time.sleep(5)
+        time.sleep(20)
 
         # Interact with the visit Xpath field
         visit_xpath_input = find_element(driver, visit_xpath)
