@@ -147,6 +147,7 @@ def main():
         # Interact with the visit Xpath field
         visit_xpath_input = find_element(driver, visit_xpath)
         visit_xpath_input.send_keys("sample")
+        print("Entered input as sample")
         time.sleep(15)
 
         # Click on the Confirm button
