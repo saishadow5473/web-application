@@ -142,12 +142,12 @@ def main():
         # Click on the Call button
         click_element(driver, call_button_xpath )
         print("Clicked on call button")
-        time.sleep(20)
+        time.sleep(25)
 
         # Interact with the visit Xpath field
         visit_xpath_input = find_element(driver, visit_xpath)
         visit_xpath_input.send_keys("sample")
-        time.sleep(10)
+        time.sleep(15)
 
         # Click on the Confirm button
         click_element(driver, confirm_button_xpath )
