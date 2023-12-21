@@ -187,12 +187,12 @@ def main():
         # Verify the Appointment Details text
         find_element(driver, appointment_details_xpath)
         print("Appointment Details text is verified.")
-        time.sleep(10)
+        time.sleep(25)
 
         # Click on the Join call button
         click_element(driver, join_call_xpath)
         print("Clicked on Join call button")
-        time.sleep(20)
+        time.sleep(45)
 
 
 
