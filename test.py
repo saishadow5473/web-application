@@ -52,6 +52,7 @@ def main():
         submit_button_xpath = '/html/body/app-root/app-login/div/div/mat-card/mat-card-content/form/mat-card-actions/div/button'
         appointment_details_xpath = '/html/body/app-root/app-host-appointment-list/div/div/div/mat-card/mat-card-title'
         join_call_xpath = '/html/body/app-root/div[1]/div/div[3]/button[1]'
+        patient_details_xpath = '/html/body/app-root/div[1]/mat-card/div[4]/div/div/div/div[1]/h2'
         
 
         # Interact with the user ID input field
@@ -197,6 +198,11 @@ def main():
         click_element(driver, join_call_xpath)
         print("Clicked on Join call button")
         time.sleep(45)
+
+        # Verify the Appointment Details text
+        find_element(driver, patient_details_xpath)
+        print("Patient Details text is verified.")
+        time.sleep(20)
 
 
 
