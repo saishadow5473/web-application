@@ -57,12 +57,12 @@ def main():
         # Interact with the user ID input field
         user_id_input = find_element(driver, user_id_xpath)
         user_id_input.send_keys("deepak.mathi@indiahealthlink.com")
-        # time.sleep(10)
+        
 
         # Interact with the password input field
         password_input = find_element(driver, password_xpath)
         password_input.send_keys("Test@123")
-        # time.sleep(10)
+        
 
         # Click the login button
         click_element(driver, login_button_xpath)
@@ -77,11 +77,13 @@ def main():
         # Click on the profile tab
         click_element(driver, profile_tab_xpath)
         time.sleep(5)
+        
 
         # Verify profile settings text
         find_element(driver, profile_settings_xpath)
         print("Clicked on profile, and profile setting text is verified.")
         time.sleep(5)
+        
 
         # Click on the dashboard icon button
         click_element(driver, dashboard_button_xpath)
@@ -91,6 +93,7 @@ def main():
         find_element(driver, stats_text_xpath)
         print("Clicked on dashboard, and stats text is verified.")
         time.sleep(5)
+        
 
         # Click on the tele consultation tab
         click_element(driver, tele_consultation_tab_xpath)
@@ -129,7 +132,7 @@ def main():
         # Click on the Accept button
         click_element(driver, accept_button_xpath)
         print("Clicked on Accept button")
-        time.sleep(7)
+        time.sleep(10)
 
         # Verify the Consultants list text
         find_element(driver, consultants_list_xpath)
@@ -172,12 +175,12 @@ def main():
         # Interact with the user ID input field
         user_name_input = find_element(driver, user_name_xpath)
         user_name_input.send_keys("Janhavidr")
-        # time.sleep(10)
+        
 
         # Interact with the password input field
         password_input = find_element(driver, pwd_xpath)
         password_input.send_keys("Test@123")
-        # time.sleep(10)
+        
 
         # Click the submit button
         click_element(driver, submit_button_xpath)
