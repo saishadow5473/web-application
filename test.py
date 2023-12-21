@@ -154,7 +154,7 @@ def main():
         # Click on the Confirm button
         click_element(driver, confirm_button_xpath )
         print("Clicked on confirm button")
-        time.sleep(15)
+        time.sleep(5)
 
         # Open a new tab
         driver.execute_script("window.open('about:blank', '_blank');")
@@ -187,12 +187,12 @@ def main():
         # Click the submit button
         click_element(driver, submit_button_xpath)
         print("submit successful")
-        time.sleep(10)
+        time.sleep(5)
 
         # Verify the Appointment Details text
         find_element(driver, appointment_details_xpath)
         print("Appointment Details text is verified.")
-        time.sleep(20)
+        time.sleep(10)
 
         # Click on the Join call button
         click_element(driver, join_call_xpath)
