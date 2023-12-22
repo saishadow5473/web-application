@@ -51,7 +51,7 @@ def main():
         pwd_xpath = '/html/body/app-root/app-login/div/div/mat-card/mat-card-content/form/mat-form-field[2]/div/div[1]/div[3]/input'
         submit_button_xpath = '/html/body/app-root/app-login/div/div/mat-card/mat-card-content/form/mat-card-actions/div/button'
         appointment_details_xpath = '/html/body/app-root/app-host-appointment-list/div/div/div/mat-card/mat-card-title'
-        join_call_xpath = '/html/body/app-root/div[1]/div/div[3]/button[1]'
+        accept_call_xpath = '/html/body/app-root/div[1]/div/div[3]/button[1]'
         patient_details_xpath = '/html/body/app-root/div[1]/mat-card/div[4]/div/div/div/div[1]/h2'
         
 
@@ -194,9 +194,9 @@ def main():
         print("Appointment Details text is verified.")
         time.sleep(5)
 
-        # Click on the Join call button
-        click_element(driver, join_call_xpath)
-        print("Clicked on Join call button")
+        # Click on the Accept call button
+        click_element(driver, accept_call_xpath)
+        print("Clicked on Accept call button")
         time.sleep(15)
 
         # Verify the Appointment Details text
