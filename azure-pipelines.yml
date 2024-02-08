@@ -6,7 +6,8 @@ pool:
 stages:
 - stage: DeployStage
   jobs:
-  - job: Virtualmachine
+  - job: BuildAndContainerize
+    displayName: 'Build and Containerize'
     steps:
     - task: NodeTool@0
       inputs:
@@ -17,72 +18,38 @@ stages:
       displayName: 'npm install and build'
       inputs:
         script: |
-          # npm install -g @angular/cli
           npm install
           npm install -g @angular/cli@12.2.18
-          # npm audit fix --force
-          # npm install
           ng build
           npm -version
           npm --version 
           
-    - task: ArchiveFiles@2
+    - task: Docker@2
+      displayName: 'Build Docker Image'
       inputs:
-        rootFolderOrFile: '$(System.DefaultWorkingDirectory)/dist/superAdminPortal'
-        includeRootFolder: false
-        archiveType: 'zip'
-        archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
-        replaceExistingArchive: true
+        command: 'build'
+        Dockerfile: '$(Build.SourcesDirectory)/Dockerfile'  # Path to your Dockerfile
+        tags: 'docker.io/saishadow5473/web-docker:$(Build.BuildId)'
         
-    - task: PublishBuildArtifacts@1
+    - task: Docker@2
+      displayName: 'Push Docker Image'
       inputs:
-        PathtoPublish: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
-        ArtifactName: 'drop'
-
+        command: 'push'
+        containerRegistry: 'docker'  # Reference to your Docker Hub service connection
+        repository: 'saishadow5473/docker'
+        tags: 'latest,$(Build.BuildId)'
+        pushImage: true  # Ensure this is set to true for private repositories
+        
   - job: Deploy
-    displayName: 'Deploy to VM'
+    displayName: 'Deploy to Docker Hub'
     dependsOn:
-    - Virtualmachine
+    - BuildAndContainerize
     steps:
-    - task: CopyFiles@2
+    - task: Docker@2
+      displayName: 'Run Docker Container'
       inputs:
-        SourceFolder: '$(Pipeline.Workspace)'
-        Contents: '**/*.zip'
-        TargetFolder: '$(Build.ArtifactStagingDirectory)'
-        
-    - task: DownloadPipelineArtifact@2
-      inputs:
-        artifactName: 'drop'
-        targetPath: '$(System.ArtifactsDirectory)'
-        
-    - powershell: |
-        Expand-Archive -Path $(System.ArtifactsDirectory)\$(Build.BuildId).zip -DestinationPath $(System.ArtifactsDirectory)\extracted
-      displayName: 'Extract artifact'
-      
-    - powershell: Get-ChildItem -Path $(System.ArtifactsDirectory)/extracted -Recurse
-      displayName: 'List Extracted Files'
-      
-    - task: CopyFiles@2
-      inputs:
-        SourceFolder: '$(System.ArtifactsDirectory)/extracted'
-        Contents: '**/*'
-        TargetFolder: '$(Build.ArtifactStagingDirectory)'
-        
-    - task: CopyFilesOverSSH@0
-      inputs:
-        sshEndpoint: 'newtest'
-        sourceFolder: '$(System.ArtifactsDirectory)/extracted'
-        contents: '**/*'
-        targetFolder: '/home/ubuntu/'
-        
-    - task: SSH@0
-      inputs:
-        sshEndpoint: 'newtest'
-        runOptions: 'inline'
-        inline: 'sudo rm -r /var/www/html/assets/* && sudo mv /home/ubuntu/* /var/www/html/ && sudo systemctl restart apache2'
-    
-    - script: |
-        python -m pip install requests
-        python -m pip install selenium
-        python test.py
-      displayName: 'Run Python Test'
+        command: 'run'
+        containerRegistry: 'docker'  # Reference to your Docker Hub service connection
+        repository: 'saishadow5473/docker'
+        tags: 'latest'
+        ports: '80:80'  # Adjust ports as needed
