@@ -55,4 +55,4 @@ stages:
         containerRegistry: 'docker'  # Reference to your Docker Hub service connection
         repository: 'saishadow5473/web-docker'
         tags: 'latest,$(Build.BuildId)''
-        ports: '80:80'
+        ports: '80:80'  # Adjust ports as needed
