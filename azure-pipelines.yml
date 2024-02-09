@@ -55,3 +55,4 @@ stages:
         repository: 'saishadow5473/web-docker'
         tags: 'latest,$(Build.BuildId)'
         ports: '80:80'  # Adjust ports as needed
+        containerName: 'my_container'  # Specify a container name
