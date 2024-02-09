@@ -29,30 +29,36 @@ stages:
       displayName: 'Build Docker Image'
       inputs:
         command: 'build'
-        Dockerfile: '$(Build.SourcesDirectory)/Dockerfile'  # Path to your Dockerfile
-        repository: 'saishadow5473/web-docker'  # Specify your Docker Hub repository
+        Dockerfile: '$(Build.SourcesDirectory)/Dockerfile'
+        repository: 'saishadow5473/web-docker'
         tags: 'latest,$(Build.BuildId)'
         
     - task: Docker@2
       displayName: 'Push Docker Image'
       inputs:
         command: 'push'
-        containerRegistry: 'docker'  # Reference to your Docker Hub service connection
+        containerRegistry: 'docker'
         repository: 'saishadow5473/web-docker'
-        tags: 'latest,$(Build.BuildId)'  # Use a dynamic tag, e.g., the Build ID
-        pushImage: true  # Ensure this is set to true for private repositories
-        
-  - job: Deploy
-    displayName: 'Deploy to Docker Hub'
-    dependsOn:
-    - BuildAndContainerize
+        tags: 'latest,$(Build.BuildId)'
+        pushImage: true
+
+  - job: RunContainerAndTest
+    displayName: 'Run Container and Test'
+    dependsOn: BuildAndContainerize
+    pool:
+      vmImage: 'ubuntu-latest'
     steps:
     - task: Docker@2
       displayName: 'Run Docker Container'
       inputs:
         command: 'run'
-        containerRegistry: 'docker'  # Reference to your Docker Hub service connection
+        containerRegistry: 'docker'
         repository: 'saishadow5473/web-docker'
         tags: 'latest,$(Build.BuildId)'
-        ports: '80:80'  # Adjust ports as needed
-        containerName: 'my_container'  # Specify a container name
+        ports: '8080:80'  # Map container port 80 to host port 8080
+
+    # Add a delay to allow the container to start
+    - script: |
+        echo "Waiting for container to start..."
+        sleep 30
+      displayName: 'Wait for Container to Start'
