@@ -34,16 +34,12 @@ stages:
     - script: |
         # List Docker images
         docker images
+        docker tag 8c99eab4b4d6 saishadow5473/web-docker:latest
+        docker login -u saishadow5473 -p @vengeR123
+        docker push 8c99eab4b4d6 saishadow5473/web-docker:latest
       displayName: 'List Docker Images'
         
-    - task: Docker@2
-      displayName: 'Push Docker Image'
-      inputs:
-        command: 'push'
-        containerRegistry: 'docker'  # Reference to your Docker Hub service connection
-        repository: 'saishadow5473/web-docker'
-        tags: 'latest,$(Build.BuildId)'
-        pushImage: true  # Ensure this is set to true for private repositories
+    
         
   - job: Deploy
     displayName: 'Deploy to Docker Hub'
