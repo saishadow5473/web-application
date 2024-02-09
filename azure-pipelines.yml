@@ -42,23 +42,3 @@ stages:
         tags: 'latest,$(Build.BuildId)'
         pushImage: true
 
-  - job: RunContainerAndTest
-    displayName: 'Run Container and Test'
-    dependsOn: BuildAndContainerize
-    pool:
-      vmImage: 'ubuntu-latest'
-    steps:
-    - task: Docker@2
-      displayName: 'Run Docker Container'
-      inputs:
-        command: 'run'
-        containerRegistry: 'docker'
-        repository: 'saishadow5473/web-docker'
-        tags: 'latest,$(Build.BuildId)'
-        ports: '8080:80'  # Map container port 80 to host port 8080
-
-    # Add a delay to allow the container to start
-    - script: |
-        echo "Waiting for container to start..."
-        sleep 30
-      displayName: 'Wait for Container to Start'
