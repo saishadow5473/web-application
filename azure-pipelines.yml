@@ -1,5 +1,6 @@
 trigger:
 - none
+
 pool:
   vmImage: 'ubuntu-latest'
 
@@ -30,7 +31,7 @@ stages:
         command: 'build'
         Dockerfile: '$(Build.SourcesDirectory)/Dockerfile'  # Path to your Dockerfile
         repository: 'saishadow5473/web-docker'  # Specify your Docker Hub repository
-        tags: 'latest,$(Build.BuildId)' 
+        tags: 'latest,$(Build.BuildId)'
         
     - task: Docker@2
       displayName: 'Push Docker Image'
@@ -40,8 +41,6 @@ stages:
         repository: 'saishadow5473/web-docker'
         tags: 'latest,$(Build.BuildId)'  # Use a dynamic tag, e.g., the Build ID
         pushImage: true  # Ensure this is set to true for private repositories
-        
-    
         
   - job: Deploy
     displayName: 'Deploy to Docker Hub'
@@ -54,5 +53,5 @@ stages:
         command: 'run'
         containerRegistry: 'docker'  # Reference to your Docker Hub service connection
         repository: 'saishadow5473/web-docker'
-        tags: 'latest,$(Build.BuildId)''
+        tags: 'latest,$(Build.BuildId)'
         ports: '80:80'  # Adjust ports as needed
