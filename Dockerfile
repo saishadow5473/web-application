@@ -5,6 +5,7 @@ WORKDIR /app
 
 
 # Copy package.json and package-lock.json to the working directory
+COPY angular.json ./
 COPY package*.json ./
 COPY tsconfig*.json ./
 COPY src/ ./src/
