@@ -15,20 +15,20 @@ stages:
   jobs:
   - job: Build
     steps:
-    - task: NodeTool@0
-      inputs:
-        versionSpec: '12.14.0'
-      displayName: 'Install Node.js'
+    # - task: NodeTool@0
+    #   inputs:
+    #     versionSpec: '12.14.0'
+    #   displayName: 'Install Node.js'
       
-    - task: CmdLine@2
-      displayName: 'npm install and build'
-      inputs:
-        script: |
-          # npm install -g @angular/cli
-          npm install -g @angular/cli@12.2.18
-          npm audit fix --force
-          npm install
-          ng build
+    # - task: CmdLine@2
+    #   displayName: 'npm install and build'
+    #   inputs:
+    #     script: |
+    #       # npm install -g @angular/cli
+    #       npm install -g @angular/cli@12.2.18
+    #       npm audit fix --force
+    #       npm install
+    #       ng build
 
     - task: Docker@2
       inputs:
