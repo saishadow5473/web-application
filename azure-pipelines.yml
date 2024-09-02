@@ -78,7 +78,7 @@ stages:
       inputs:
         sshEndpoint: 'ihlconnection'
         runOptions: 'inline'
-        inline: 'sudo mv /home/ubuntu/* /var/www/html/ && sudo systemctl restart nginx'
+        inline: 'sudo rm -rf /var/www/html/* && sudo mv /home/ubuntu/* /var/www/html/ && sudo systemctl restart nginx'
 
     - script: |
         python -m pip install requests
