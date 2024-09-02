@@ -9,10 +9,10 @@ def main():
     # Set up the Selenium WebDriver with options
     options = webdriver.ChromeOptions()
     # Comment the next line if you want to see the browser window
-    # options.add_argument('--headless')  # Use this if you're running headless
+    options.add_argument('--headless')  # Use this if you're running headless
     # Actual path to Chrome binary (change this to the path on your machine)
-    # options.binary_location = '/usr/bin/google-chrome'
-    options.binary_location = 'C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe'
+    options.binary_location = '/usr/bin/google-chrome'
+    # options.binary_location = 'C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe'
     driver = webdriver.Chrome(options=options)
 
     try:
