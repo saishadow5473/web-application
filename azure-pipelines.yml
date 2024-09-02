@@ -1,67 +1,87 @@
+
 trigger:
-  - none
+- none
 
 pool:
   vmImage: 'ubuntu-latest'
 
-variables:
-  dockerImageName: 'saishadow5473/sampleimage'  # Replace with your Docker Hub username and desired image name
-  dockerRegistryServiceConnection: 'MyDockerHub'  # Replace with your Docker registry service connection name
-  awsVmIp: '3.108.51.214'  # Replace with your AWS VM IP
-  awsVmUser: 'ubuntu'  # Replace with your AWS VM username
-
 stages:
-- stage: Build
+- stage: DeployStage
   jobs:
-  - job: Build
+  - job: Virtualmachine
     steps:
-    # - task: NodeTool@0
-    #   inputs:
-    #     versionSpec: '12.14.0'
-    #   displayName: 'Install Node.js'
-      
-    # - task: CmdLine@2
-    #   displayName: 'npm install and build'
-    #   inputs:
-    #     script: |
-    #       # npm install -g @angular/cli
-    #       npm install -g @angular/cli@12.2.18
-    #       npm audit fix --force
-    #       npm install
-    #       ng build
-
-    - task: Docker@2
+    - task: NodeTool@0
       inputs:
-        containerRegistry: '$(dockerRegistryServiceConnection)'
-        repository: '$(dockerImageName)'
-        command: 'buildAndPush'
-        Dockerfile: '**/Dockerfile'
-        tags: |
-          latest
-      displayName: 'Build and Push Docker Image'
+        versionSpec: '12.14.0'
+      displayName: 'Install Node.js'
 
-- stage: Deploy
-  dependsOn: Build
-  jobs:
+    - task: CmdLine@2
+      displayName: 'npm install and build'
+      inputs:
+        script: |
+          # npm install -g @angular/cli
+          npm install -g @angular/cli@12.2.18
+          npm audit fix --force
+          npm install
+          ng build
+
+    - task: ArchiveFiles@2
+      inputs:
+        rootFolderOrFile: '$(System.DefaultWorkingDirectory)/dist/superAdminPortal'
+        includeRootFolder: false
+        archiveType: 'zip'
+        archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
+        replaceExistingArchive: true
+
+    - task: PublishBuildArtifacts@1
+      inputs:
+        PathtoPublish: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
+        ArtifactName: 'drop'
+
   - job: Deploy
-    pool:
-      vmImage: 'ubuntu-latest'
+    displayName: 'Deploy to VM'
+    dependsOn:
+    - Virtualmachine
     steps:
+    - task: CopyFiles@2
+      inputs:
+        SourceFolder: '$(Pipeline.Workspace)'
+        Contents: '**/*.zip'
+        TargetFolder: '$(Build.ArtifactStagingDirectory)'
+
+    - task: DownloadPipelineArtifact@2
+      inputs:
+        artifactName: 'drop'
+        targetPath: '$(System.ArtifactsDirectory)'
+
+    - powershell: |
+        Expand-Archive -Path $(System.ArtifactsDirectory)\$(Build.BuildId).zip -DestinationPath $(System.ArtifactsDirectory)\extracted
+      displayName: 'Extract artifact'
+
+    - powershell: Get-ChildItem -Path $(System.ArtifactsDirectory)/extracted -Recurse
+      displayName: 'List Extracted Files'
+
+    - task: CopyFiles@2
+      inputs:
+        SourceFolder: '$(System.ArtifactsDirectory)/extracted'
+        Contents: '**/*'
+        TargetFolder: '$(Build.ArtifactStagingDirectory)'
+
+    - task: CopyFilesOverSSH@0
+      inputs:
+        sshEndpoint: 'ihlconnection'
+        sourceFolder: '$(System.ArtifactsDirectory)/extracted'
+        contents: '**/*'
+        targetFolder: '/home/ubuntu/'
+
     - task: SSH@0
       inputs:
-        sshEndpoint: 'ihlconnection'  # Replace with your Azure DevOps SSH service connection endpoint name
+        sshEndpoint: 'ihlconnection'
         runOptions: 'inline'
-        # scriptType: 'bash'
-        # scriptLocation: 'inline'
-        inline: |
-          # Check if container exists before attempting to stop and remove it
-          if docker ps -a --format '{{.Names}}' | grep -q my-container; then
-            docker stop my-container || true
-            docker rm my-container || true
-          fi
+        inline: 'sudo mv /home/ubuntu/* /var/www/html/ && sudo systemctl restart nginx'
 
-          # Retry pulling the Docker image in case of failure
-          docker pull $(dockerImageName):latest || true
-
-          # Run your docker run command to start the container
-          docker run -d --name my-container -p 80:80 $(dockerImageName):latest
+    - script: |
+        python -m pip install requests
+        python -m pip install selenium
+        python runtest.py
+      displayName: 'Run Python Test'
