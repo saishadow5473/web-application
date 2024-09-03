@@ -83,5 +83,5 @@ stages:
     - script: |
         python -m pip install requests
         python -m pip install selenium
-        python runtest.py
+        python test.py
       displayName: 'Run Python Test'
