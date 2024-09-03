@@ -105,104 +105,104 @@ def main():
         print("Clicked on tele consultation tab and tele consultation text is verified.")
         time.sleep(5)
 
-        # Click on the member services tab
-        click_element(driver, member_services_xpath)
-        print("Clicked on member services tab")
-        time.sleep(5)
+        # # Click on the member services tab
+        # click_element(driver, member_services_xpath)
+        # print("Clicked on member services tab")
+        # time.sleep(5)
 
-        # Verify the select your association text
-        find_element(driver, select_your_association_xpath)
-        print("Clicked on member services and select your association text is verified.")
-        time.sleep(5)
+        # # Verify the select your association text
+        # find_element(driver, select_your_association_xpath)
+        # print("Clicked on member services and select your association text is verified.")
+        # time.sleep(5)
 
-        # Click on the Dev Testing tab
-        click_element(driver, dev_testing_xpath)
-        print("Clicked on Dev Testing tab")
-        time.sleep(5)
+        # # Click on the Dev Testing tab
+        # click_element(driver, dev_testing_xpath)
+        # print("Clicked on Dev Testing tab")
+        # time.sleep(5)
 
-        # Verify the Dev Testing text
-        find_element(driver, dev_testing_text_xpath)
-        print("Clicked on Dev Testing tab and Dev Testing text is verified.")
-        time.sleep(5)
+        # # Verify the Dev Testing text
+        # find_element(driver, dev_testing_text_xpath)
+        # print("Clicked on Dev Testing tab and Dev Testing text is verified.")
+        # time.sleep(5)
 
-        # Click on the Financial Wellbeing tab
-        click_element(driver, financial_wellbeing_xpath)
-        print("Clicked on Financial Wellbeing tab")
-        time.sleep(5)
+        # # Click on the Financial Wellbeing tab
+        # click_element(driver, financial_wellbeing_xpath)
+        # print("Clicked on Financial Wellbeing tab")
+        # time.sleep(5)
 
-        # Click on the Accept button
-        click_element(driver, accept_button_xpath)
-        print("Clicked on Accept button")
-        time.sleep(10)
+        # # Click on the Accept button
+        # click_element(driver, accept_button_xpath)
+        # print("Clicked on Accept button")
+        # time.sleep(10)
 
-        # Verify the Consultants list text
-        find_element(driver, consultants_list_xpath)
-        print("consultants list text is verified.")
-        time.sleep(20)
+        # # Verify the Consultants list text
+        # find_element(driver, consultants_list_xpath)
+        # print("consultants list text is verified.")
+        # time.sleep(20)
 
-        # Click on the Call button
-        click_element(driver, call_button_xpath )
-        print("Clicked on call button")
-        time.sleep(20)
+        # # Click on the Call button
+        # click_element(driver, call_button_xpath )
+        # print("Clicked on call button")
+        # time.sleep(20)
 
-        # Interact with the visit Xpath field
-        visit_xpath_input = find_element(driver, visit_xpath)
-        visit_xpath_input.send_keys("sample")
-        print("Entered input as sample")
-        time.sleep(15)
+        # # Interact with the visit Xpath field
+        # visit_xpath_input = find_element(driver, visit_xpath)
+        # visit_xpath_input.send_keys("sample")
+        # print("Entered input as sample")
+        # time.sleep(15)
 
-        # Click on the Confirm button
-        click_element(driver, confirm_button_xpath )
-        print("Clicked on confirm button")
-        time.sleep(5)
+        # # Click on the Confirm button
+        # click_element(driver, confirm_button_xpath )
+        # print("Clicked on confirm button")
+        # time.sleep(5)
 
-        # Open a new tab
-        driver.execute_script("window.open('about:blank', '_blank');")
+        # # Open a new tab
+        # driver.execute_script("window.open('about:blank', '_blank');")
 
-        # Switch to the newly opened tab
-        driver.switch_to.window(driver.window_handles[1])
+        # # Switch to the newly opened tab
+        # driver.switch_to.window(driver.window_handles[1])
 
-        # Navigate to the desired URL
-        new_tab_url = "https://apps.indiahealthlink.com/consultant/"
-        driver.get(new_tab_url)
+        # # Navigate to the desired URL
+        # new_tab_url = "https://apps.indiahealthlink.com/consultant/"
+        # driver.get(new_tab_url)
 
-        # Add a delay if needed to ensure the page is fully loaded
-        time.sleep(10)
+        # # Add a delay if needed to ensure the page is fully loaded
+        # time.sleep(10)
 
 
 
-        # # Switch back to the original tab
-        # driver.switch_to.window(driver.window_handles[0])
+        # # # Switch back to the original tab
+        # # driver.switch_to.window(driver.window_handles[0])
 
-        # Interact with the user ID input field
-        user_name_input = find_element(driver, user_name_xpath)
-        user_name_input.send_keys("Janhavidr")
+        # # Interact with the user ID input field
+        # user_name_input = find_element(driver, user_name_xpath)
+        # user_name_input.send_keys("Janhavidr")
         
 
-        # Interact with the password input field
-        password_input = find_element(driver, pwd_xpath)
-        password_input.send_keys("Test@123")
+        # # Interact with the password input field
+        # password_input = find_element(driver, pwd_xpath)
+        # password_input.send_keys("Test@123")
         
 
-        # Click the submit button
-        click_element(driver, submit_button_xpath)
-        print("submit successful")
-        time.sleep(5)
+        # # Click the submit button
+        # click_element(driver, submit_button_xpath)
+        # print("submit successful")
+        # time.sleep(5)
 
-        # Verify the Appointment Details text
-        find_element(driver, appointment_details_xpath)
-        print("Appointment Details text is verified.")
-        time.sleep(5)
+        # # Verify the Appointment Details text
+        # find_element(driver, appointment_details_xpath)
+        # print("Appointment Details text is verified.")
+        # time.sleep(5)
 
-        # Click on the Accept call button
-        click_element(driver, accept_call_xpath)
-        print("Clicked on Accept call button")
-        time.sleep(15)
+        # # Click on the Accept call button
+        # click_element(driver, accept_call_xpath)
+        # print("Clicked on Accept call button")
+        # time.sleep(15)
 
-        # Verify the Appointment Details text
-        find_element(driver, patient_details_xpath)
-        print("Patient Details text is verified.")
-        time.sleep(10)
+        # # Verify the Appointment Details text
+        # find_element(driver, patient_details_xpath)
+        # print("Patient Details text is verified.")
+        # time.sleep(10)
 
 
 
