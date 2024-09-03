@@ -24,7 +24,7 @@ def main():
 
     try:
         # Open the login page
-        driver.get("http://54.177.126.159/")
+        driver.get("http://3.110.163.253/")
 
         # Define XPaths as variables
         user_id_xpath = '/html/body/app-root/app-login/div/div/div[2]/div/div/div/div/div[3]/div/form/div[1]/input'
